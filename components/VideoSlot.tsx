@@ -30,16 +30,26 @@ export default function VideoSlot({ tempLevel }: { tempLevel: TempLevel }) {
   const c = levelColor[tempLevel.color];
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-border bg-white shadow-sm">
-      <div className="px-5 py-3 border-b border-border flex items-center justify-between">
-        <span className="font-bold text-slate-700 text-lg">{tempLevel.label} 상승 시 서울</span>
+    <div className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
+      <div className="flex items-center justify-between border-b border-border px-4 py-3">
+        <span className="text-lg font-bold text-slate-800">{tempLevel.label} 상승 시 서울</span>
         <span className={`text-sm font-semibold px-3 py-1 rounded-full border ${c}`}>
           {tempLevel.level}
         </span>
       </div>
 
       {hasVideo ? (
-        <video ref={videoRef} className="w-full aspect-video object-cover bg-black" controls playsInline>
+        <video
+          key={src}
+          ref={videoRef}
+          className="aspect-video w-full bg-black object-cover"
+          controls
+          playsInline
+          muted
+          loop
+          autoPlay
+          preload="metadata"
+        >
           <source src={src} type="video/mp4" />
         </video>
       ) : (
@@ -62,8 +72,8 @@ export default function VideoSlot({ tempLevel }: { tempLevel: TempLevel }) {
         </div>
       )}
 
-      <div className="px-5 py-3 bg-surface border-t border-border">
-        <p className="text-slate-600 text-sm">{tempLevel.summary}</p>
+      <div className="border-t border-border bg-white px-4 py-3">
+        <p className="text-sm leading-6 text-slate-600">{tempLevel.summary}</p>
       </div>
     </div>
   );

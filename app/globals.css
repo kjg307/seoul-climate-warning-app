@@ -5,10 +5,16 @@
 * { box-sizing: border-box; }
 
 body {
-  background: #ffffff;
+  background: #f8fafc;
   color: #1e293b;
   font-family: "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button, video {
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::-webkit-scrollbar { width: 6px; }

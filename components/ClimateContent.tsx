@@ -24,7 +24,7 @@ export default function ClimateContent({ tempLevel }: { tempLevel: TempLevel }) 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
       {/* 전 세계 기후 현상 */}
-      <div className={`rounded-2xl border p-5 ${border}`}>
+      <div className={`rounded-lg border p-5 ${border}`}>
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xl">🌍</span>
           <h3 className="font-bold text-slate-700">전 세계 기후 현상</h3>
@@ -40,7 +40,7 @@ export default function ClimateContent({ tempLevel }: { tempLevel: TempLevel }) 
       </div>
 
       {/* 서울 · 한반도 변화 */}
-      <div className={`rounded-2xl border p-5 ${border}`}>
+      <div className={`rounded-lg border p-5 ${border}`}>
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xl">🗼</span>
           <h3 className="font-bold text-slate-700">서울 · 한반도 변화</h3>
