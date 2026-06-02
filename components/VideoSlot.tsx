@@ -1,19 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Decade } from "@/lib/climateProjections";
+import type { TempLevel } from "@/lib/climateProjections";
 
-const levelColor: Record<Decade["color"], string> = {
+const levelColor: Record<TempLevel["color"], string> = {
   blue:   "text-blue-600 border-blue-200 bg-blue-50",
-  yellow: "text-yellow-600 border-yellow-200 bg-yellow-50",
   orange: "text-orange-600 border-orange-200 bg-orange-50",
-  red:    "text-red-600 border-red-200 bg-red-50"
+  red:    "text-red-600 border-red-200 bg-red-50",
+  darkred:"text-red-950 border-red-300 bg-red-50",
+  black:  "text-slate-950 border-slate-300 bg-slate-100"
 };
 
-export default function VideoSlot({ decade }: { decade: Decade }) {
+export default function VideoSlot({ tempLevel }: { tempLevel: TempLevel }) {
   const [hasVideo, setHasVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const src = `/videos/${decade.year}.mp4`;
+  const src = `/videos/${tempLevel.videoFile}`;
 
   useEffect(() => {
     setHasVideo(false);
@@ -26,14 +27,14 @@ export default function VideoSlot({ decade }: { decade: Decade }) {
     if (hasVideo) videoRef.current?.load();
   }, [hasVideo, src]);
 
-  const c = levelColor[decade.color];
+  const c = levelColor[tempLevel.color];
 
   return (
     <div className="rounded-2xl overflow-hidden border border-border bg-white shadow-sm">
       <div className="px-5 py-3 border-b border-border flex items-center justify-between">
-        <span className="font-bold text-slate-700 text-lg">{decade.year}년 서울</span>
+        <span className="font-bold text-slate-700 text-lg">{tempLevel.label} 상승 시 서울</span>
         <span className={`text-sm font-semibold px-3 py-1 rounded-full border ${c}`}>
-          {decade.level}
+          {tempLevel.level}
         </span>
       </div>
 
@@ -53,7 +54,7 @@ export default function VideoSlot({ decade }: { decade: Decade }) {
             <p className="font-semibold text-slate-600 mb-1">영상 준비 중</p>
             <p className="text-slate-400 text-sm">
               <code className="bg-slate-100 px-1.5 py-0.5 rounded text-xs">
-                public/videos/{decade.year}.mp4
+                public/videos/{tempLevel.videoFile}
               </code>
               <br />을 추가하면 자동으로 재생됩니다
             </p>
@@ -62,7 +63,7 @@ export default function VideoSlot({ decade }: { decade: Decade }) {
       )}
 
       <div className="px-5 py-3 bg-surface border-t border-border">
-        <p className="text-slate-600 text-sm">{decade.summary}</p>
+        <p className="text-slate-600 text-sm">{tempLevel.summary}</p>
       </div>
     </div>
   );

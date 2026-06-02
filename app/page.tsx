@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { decades } from "@/lib/climateProjections";
-import YearSelector from "@/components/YearSelector";
+import { tempLevels } from "@/lib/climateProjections";
+import TemperatureSelector from "@/components/TemperatureSelector";
 import VideoSlot from "@/components/VideoSlot";
 import StatsRow from "@/components/StatsRow";
 import ClimateContent from "@/components/ClimateContent";
 
 export default function Home() {
-  const [year, setYear] = useState(2050);
-  const decade = decades.find((d) => d.year === year)!;
+  const [temp, setTemp] = useState(1);
+  const tempLevel = tempLevels.find((d) => d.temp === temp)!;
 
   return (
     <div className="min-h-screen bg-white">
@@ -26,19 +26,19 @@ export default function Home() {
       <main className="max-w-5xl mx-auto px-4 py-12 space-y-10">
         <div className="text-center space-y-3">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
-            몇 년 후 서울은 어떤 모습일까요?
+            지구 온도가 오르면 서울은 어떻게 변할까요?
           </h1>
           <p className="text-slate-500 text-base max-w-lg mx-auto">
-            연도를 선택하면 기후 데이터와 예측 자료를 보여줍니다.
+            온도 상승폭을 선택하면 기후 데이터와 예측 자료를 보여줍니다.
           </p>
         </div>
 
-        <YearSelector selected={year} onChange={setYear} />
+        <TemperatureSelector selected={temp} onChange={setTemp} />
 
-        <div key={year} className="space-y-6 animate-slide-in">
-          <VideoSlot decade={decade} />
-          <StatsRow decade={decade} />
-          <ClimateContent decade={decade} />
+        <div key={temp} className="space-y-6 animate-slide-in">
+          <VideoSlot tempLevel={tempLevel} />
+          <StatsRow tempLevel={tempLevel} />
+          <ClimateContent tempLevel={tempLevel} />
         </div>
       </main>
 
