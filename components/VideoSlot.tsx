@@ -43,7 +43,6 @@ export default function VideoSlot({ tempLevel }: { tempLevel: TempLevel }) {
           key={src}
           ref={videoRef}
           className="aspect-video w-full bg-black object-cover"
-          controls
           playsInline
           muted
           loop
